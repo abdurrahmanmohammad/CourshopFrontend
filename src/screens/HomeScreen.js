@@ -19,9 +19,9 @@ export default function Home() {
     <div className="bg-light p-3">
       <div className="bg-white m-5 p-5 shadow">
         {loading ? (
-          <LoadingBox></LoadingBox>
+          <LoadingBox />
         ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
+          <MessageBox message={error} />
         ) : (
           <div className="row mb-5">
             {/**<!-- Categories-->*/}
@@ -30,9 +30,10 @@ export default function Home() {
             <div className="col-md-9">
               <div className="row">
                 {/** <!-- Product -->*/}
-                {products.map((product) => (
-                  <Product key={product._id} product={product} />
-                ))}
+                {products &&
+                  products.map((product) => (
+                    <Product key={product._id} product={product} />
+                  ))}
               </div>
             </div>
           </div>
