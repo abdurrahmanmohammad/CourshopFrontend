@@ -1,6 +1,5 @@
 {
   "name": "frontend",
-  "proxy": "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
