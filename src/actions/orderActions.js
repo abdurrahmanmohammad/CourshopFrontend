@@ -35,15 +35,11 @@ export const createOrder = (order) => async (dispatch, getState) => {
       data: {
         data: { data },
       },
-    } = await Axios.post(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/checkout",
-      order,
-      {
-        headers: {
-          Authorization: userInfo.token,
-        },
-      }
-    );
+    } = await Axios.post("/api/orders/checkout", order, {
+      headers: {
+        Authorization: userInfo.token,
+      },
+    });
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     dispatch({ type: CART_EMPTY });
     localStorage.removeItem("cartItems");
@@ -64,12 +60,9 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/mine/${orderId}`,
-      {
-        headers: { Authorization: userInfo.token },
-      }
-    );
+    const { data } = await Axios.get(`/api/orders/mine/${orderId}`, {
+      headers: { Authorization: userInfo.token },
+    });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -88,12 +81,9 @@ export const detailsAnyOrder = (orderId) => async (dispatch, getState) => {
   try {
     const {
       data: { data },
-    } = await Axios.get(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}`,
-      {
-        headers: { Authorization: userInfo.token },
-      }
-    );
+    } = await Axios.get(`/api/orders/${orderId}`, {
+      headers: { Authorization: userInfo.token },
+    });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -112,7 +102,7 @@ export const payOrder =
     } = getState();
     try {
       const { data } = Axios.put(
-        `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${order._id}/pay`,
+        `/api/orders/${order._id}/pay`,
         paymentResult,
         {
           headers: { Authorization: userInfo.token },
@@ -133,14 +123,11 @@ export const listOrderMine = () => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/mine",
-      {
-        headers: {
-          Authorization: userInfo.token,
-        },
-      }
-    );
+    const { data } = await Axios.get("/api/orders/mine", {
+      headers: {
+        Authorization: userInfo.token,
+      },
+    });
     dispatch({ type: ORDER_MINE_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -158,12 +145,9 @@ export const listOrders = () => async (dispatch, getState) => {
   try {
     const {
       data: { data },
-    } = await Axios.get(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders",
-      {
-        headers: { Authorization: userInfo.token },
-      }
-    );
+    } = await Axios.get("/api/orders", {
+      headers: { Authorization: userInfo.token },
+    });
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -179,12 +163,9 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = Axios.delete(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}`,
-      {
-        headers: { Authorization: userInfo.token },
-      }
-    );
+    const { data } = Axios.delete(`/api/orders/${orderId}`, {
+      headers: { Authorization: userInfo.token },
+    });
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -202,7 +183,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.put(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}/deliver`,
+      `/api/orders/${orderId}/deliver`,
       {},
       {
         headers: { Authorization: userInfo.token },

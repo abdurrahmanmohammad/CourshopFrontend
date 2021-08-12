@@ -24,9 +24,7 @@ export const listProducts = () => async (dispatch) => {
   try {
     const {
       data: { data },
-    } = await Axios.get(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products"
-    );
+    } = await Axios.get("/api/products");
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -38,9 +36,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
   try {
     const {
       data: { data },
-    } = await Axios.get(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products/${productId}`
-    );
+    } = await Axios.get(`/api/products/${productId}`);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -58,13 +54,9 @@ export const createProduct = (product) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.post(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products",
-      product,
-      {
-        headers: { Authorization: userInfo.token },
-      }
-    );
+    const { data } = await Axios.post("/api/products", product, {
+      headers: { Authorization: userInfo.token },
+    });
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data.product });
   } catch (error) {
     const message =
@@ -102,12 +94,9 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = Axios.delete(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products/${productId}`,
-      {
-        headers: { Authorization: userInfo.token },
-      }
-    );
+    const { data } = Axios.delete(`/api/products/${productId}`, {
+      headers: { Authorization: userInfo.token },
+    });
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
     const message =
