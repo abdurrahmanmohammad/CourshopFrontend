@@ -30,7 +30,7 @@ export const register =
       const {
         data: { data },
       } = await Axios.post(
-        "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/signup",
+        "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/signup",
         {
           name,
           email,
@@ -58,7 +58,7 @@ export const signin = (email, password) => async (dispatch) => {
     const {
       data: { data },
     } = await Axios.post(
-      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/login",
+      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/login",
       { email, password }
     );
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
@@ -91,7 +91,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.get(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/${userId}`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/${userId}`,
       {
         headers: { Authorization: userInfo.token },
       }
@@ -115,7 +115,7 @@ export const detailsCurrentUser = (userId) => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.get(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/me`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/me`,
       {
         headers: { Authorization: userInfo.token },
       }
@@ -139,7 +139,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.patch(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/updateMe`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/updateMe`,
       user,
       {
         headers: { Authorization: userInfo.token },
@@ -167,7 +167,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         data: { data },
       },
     } = await Axios.patch(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/${user._id}`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/${user._id}`,
       user,
       {
         headers: { Authorization: userInfo.token },
@@ -191,7 +191,7 @@ export const listUsers = () => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.get(
-      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users",
+      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users",
       {
         headers: {
           Authorization: userInfo.token,
@@ -214,7 +214,7 @@ export const deleteUser = (userId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.delete(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/${userId}`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/users/${userId}`,
       {
         headers: { Authorization: userInfo.token },
       }

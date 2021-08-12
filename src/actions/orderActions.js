@@ -36,7 +36,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         data: { data },
       },
     } = await Axios.post(
-      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/checkout",
+      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/checkout",
       order,
       {
         headers: {
@@ -65,7 +65,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.get(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/mine/${orderId}`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/mine/${orderId}`,
       {
         headers: { Authorization: userInfo.token },
       }
@@ -89,7 +89,7 @@ export const detailsAnyOrder = (orderId) => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.get(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}`,
       {
         headers: { Authorization: userInfo.token },
       }
@@ -112,7 +112,7 @@ export const payOrder =
     } = getState();
     try {
       const { data } = Axios.put(
-        `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${order._id}/pay`,
+        `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${order._id}/pay`,
         paymentResult,
         {
           headers: { Authorization: userInfo.token },
@@ -134,7 +134,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.get(
-      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/mine",
+      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/mine",
       {
         headers: {
           Authorization: userInfo.token,
@@ -159,7 +159,7 @@ export const listOrders = () => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.get(
-      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders",
+      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders",
       {
         headers: { Authorization: userInfo.token },
       }
@@ -180,7 +180,7 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.delete(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}`,
       {
         headers: { Authorization: userInfo.token },
       }
@@ -202,7 +202,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.put(
-      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}/deliver`,
+      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/orders/${orderId}/deliver`,
       {},
       {
         headers: { Authorization: userInfo.token },
