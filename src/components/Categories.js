@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Categories() {
   return (
-    <div className="col-md-3 border-right border-control">
+    <div className="col-3 border-right">
       <table className="table table-hover border-bottom">
         <thead className="thead-dark">
           <tr>

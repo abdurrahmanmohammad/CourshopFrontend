@@ -19,21 +19,20 @@ export default function Home() {
     <div className="bg-light p-3">
       <div className="bg-white m-5 p-5 shadow">
         {loading ? (
-          <LoadingBox />
+          <LoadingBox></LoadingBox>
         ) : error ? (
-          <MessageBox message={error} />
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <div className="row mb-5">
             {/**<!-- Categories-->*/}
-            <Categories />
+            <Categories></Categories>
             {/**<!-- Cards-->*/}
-            <div className="col-md-9">
+            <div className="col-9">
               <div className="row">
                 {/** <!-- Product -->*/}
-                {products &&
-                  products.map((product) => (
-                    <Product key={product._id} product={product} />
-                  ))}
+                {products.map((product) => (
+                  <Product key={product._id} product={product}></Product>
+                ))}
               </div>
             </div>
           </div>
