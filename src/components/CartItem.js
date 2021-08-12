@@ -29,7 +29,7 @@ export default function CartItem(props) {
         <img
           className="p-auto m-auto d-block"
           style={{ width: "100px", height: "100px" }}
-          src={product.imageCover}
+          src={`https://courshopbackend.herokuapp.com/${product.imageCover}`}
           alt="Product"
         />
       </div>

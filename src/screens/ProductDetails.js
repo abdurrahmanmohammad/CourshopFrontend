@@ -44,7 +44,7 @@ export default function ProductDetails(props) {
         ) : (
           <div className="row mb-5 h-100">
             <img
-              src={product.imageCover}
+              src={`https://courshopbackend.herokuapp.com/${product.imageCover}`}
               alt={product.name}
               className="col-md-6 h-100"
             />

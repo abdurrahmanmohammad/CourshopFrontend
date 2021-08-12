@@ -13,7 +13,7 @@ export default function Product(props) {
         <div className="card">
           <img
             className="card-img-top"
-            src={product.imageCover}
+            src={`https://courshopbackend.herokuapp.com/${product.imageCover}`}
             alt="Card image cap"
           />
           <div className="card-body">

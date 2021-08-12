@@ -24,7 +24,7 @@ export const listProducts = () => async (dispatch) => {
   try {
     const {
       data: { data },
-    } = await Axios.get("/api/products");
+    } = await Axios.get("https://courshopbackend.herokuapp.com/api/products");
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -36,7 +36,9 @@ export const detailsProduct = (productId) => async (dispatch) => {
   try {
     const {
       data: { data },
-    } = await Axios.get(`/api/products/${productId}`);
+    } = await Axios.get(
+      `https://courshopbackend.herokuapp.com/api/products/${productId}`
+    );
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -54,9 +56,13 @@ export const createProduct = (product) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.post("/api/products", product, {
-      headers: { Authorization: userInfo.token },
-    });
+    const { data } = await Axios.post(
+      "https://courshopbackend.herokuapp.com/api/products",
+      product,
+      {
+        headers: { Authorization: userInfo.token },
+      }
+    );
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data.product });
   } catch (error) {
     const message =
@@ -73,7 +79,9 @@ export const updateProduct = (product) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.patch(
-      `/api/products/${product.get("_id")}`,
+      `https://courshopbackend.herokuapp.com/api/products/${product.get(
+        "_id"
+      )}`,
       product,
       {
         headers: { Authorization: userInfo.token },
@@ -94,9 +102,12 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = Axios.delete(`/api/products/${productId}`, {
-      headers: { Authorization: userInfo.token },
-    });
+    const { data } = Axios.delete(
+      `https://courshopbackend.herokuapp.com/api/products/${productId}`,
+      {
+        headers: { Authorization: userInfo.token },
+      }
+    );
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
     const message =
