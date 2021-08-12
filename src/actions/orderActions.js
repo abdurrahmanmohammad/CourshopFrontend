@@ -30,7 +30,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    console.log(order);
     const {
       data: {
         data: { data },
@@ -38,11 +37,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     } = await Axios.post(
       "https://courshopbackend.herokuapp.com/api/orders/checkout",
       order,
-      {
-        headers: {
-          Authorization: userInfo.token,
-        },
-      }
+      { headers: { Authorization: `Bearer ${userInfo.token}` } }
     );
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     dispatch({ type: CART_EMPTY });
@@ -66,9 +61,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
   try {
     const { data } = await Axios.get(
       `https://courshopbackend.herokuapp.com/api/orders/mine/${orderId}`,
-      {
-        headers: { Authorization: userInfo.token },
-      }
+      { headers: { Authorization: `Bearer ${userInfo.token}` } }
     );
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -91,7 +84,7 @@ export const detailsAnyOrder = (orderId) => async (dispatch, getState) => {
     } = await Axios.get(
       `https://courshopbackend.herokuapp.com/api/orders/${orderId}`,
       {
-        headers: { Authorization: userInfo.token },
+        headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
@@ -115,7 +108,7 @@ export const payOrder =
         `https://courshopbackend.herokuapp.com/api/orders/${order._id}/pay`,
         paymentResult,
         {
-          headers: { Authorization: userInfo.token },
+          headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
       dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
@@ -136,9 +129,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
     const { data } = await Axios.get(
       "https://courshopbackend.herokuapp.com/api/orders/mine",
       {
-        headers: {
-          Authorization: userInfo.token,
-        },
+        headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
     dispatch({ type: ORDER_MINE_LIST_SUCCESS, payload: data });
@@ -159,7 +150,7 @@ export const listOrders = () => async (dispatch, getState) => {
     const {
       data: { data },
     } = await Axios.get("https://courshopbackend.herokuapp.com/api/orders", {
-      headers: { Authorization: userInfo.token },
+      headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -179,7 +170,7 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
     const { data } = Axios.delete(
       `https://courshopbackend.herokuapp.com/api/orders/${orderId}`,
       {
-        headers: { Authorization: userInfo.token },
+        headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
@@ -201,9 +192,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
     const { data } = Axios.put(
       `https://courshopbackend.herokuapp.com/api/orders/${orderId}/deliver`,
       {},
-      {
-        headers: { Authorization: userInfo.token },
-      }
+      { headers: { Authorization: `Bearer ${userInfo.token}` } }
     );
     dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
   } catch (error) {

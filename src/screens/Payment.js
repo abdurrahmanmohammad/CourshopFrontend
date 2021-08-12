@@ -61,7 +61,6 @@ export default function Payment(props) {
   useEffect(() => {
     if (success) {
       dispatch({ type: ORDER_CREATE_RESET });
-      console.log(order);
       props.history.push(`/order/my/${order._id}`);
     }
   }, [dispatch, order, props.history, success]);

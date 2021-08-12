@@ -60,7 +60,7 @@ export const createProduct = (product) => async (dispatch, getState) => {
       "https://courshopbackend.herokuapp.com/api/products",
       product,
       {
-        headers: { Authorization: userInfo.token },
+        headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data.product });
@@ -84,7 +84,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       )}`,
       product,
       {
-        headers: { Authorization: userInfo.token },
+        headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
@@ -105,7 +105,7 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     const { data } = Axios.delete(
       `https://courshopbackend.herokuapp.com/api/products/${productId}`,
       {
-        headers: { Authorization: userInfo.token },
+        headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
     dispatch({ type: PRODUCT_DELETE_SUCCESS });

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function OrderRow(props) {
-  console.log(props.order.user);
   return (
     <tr>
       <td scope="row">{props.order._id}</td>
