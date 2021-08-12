@@ -15,6 +15,7 @@ export default function Home() {
     dispatch(listProducts());
   }, [dispatch]);
 
+  console.log(products);
   return (
     <div className="bg-light p-3">
       <div className="bg-white m-5 p-5 shadow">
