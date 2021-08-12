@@ -25,7 +25,7 @@ export const listProducts = () => async (dispatch) => {
     const {
       data: { data },
     } = await Axios.get(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products"
+      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products"
     );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -39,7 +39,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
     const {
       data: { data },
     } = await Axios.get(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products/${productId}`
+      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products/${productId}`
     );
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -59,7 +59,7 @@ export const createProduct = (product) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.post(
-      "http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products",
+      "https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products",
       product,
       {
         headers: { Authorization: userInfo.token },
@@ -103,7 +103,7 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.delete(
-      `http://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products/${productId}`,
+      `https://courshopbackend-env-3.eba-x3hthwmj.us-east-2.elasticbeanstalk.com/api/products/${productId}`,
       {
         headers: { Authorization: userInfo.token },
       }
